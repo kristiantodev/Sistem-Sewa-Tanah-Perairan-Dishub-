@@ -75,7 +75,7 @@
 
                                       <?php } ?>
 
-                                      <?php if ($b->acc_admin==1) { ?>
+                                      <?php if ($b->acc_admin==1 && $b->acc_final==0) { ?>
 
                                         <br><span class="badge badge-info">Menunggu Surat Persetujuan Pihak Dishub</span>
 
@@ -88,7 +88,7 @@
                                       <?php } ?>
 
                                       <?php if ($b->acc_final==1) { ?>
-
+<br>
                                         <span class="badge badge-success">Bukti Pembayaran Terupload</span>
 
                                       <?php } ?>
