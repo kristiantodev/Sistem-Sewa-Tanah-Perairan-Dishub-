@@ -13,13 +13,13 @@ class Pengajuan extends My_Controller {
         }
 	}
 
-	public function index()
-	{
+	public function index(){
         $idUser=$this->session->userdata('id_user');
         $pengajuan = $this->db->query("SELECT*FROM pengajuan 
             LEFT JOIN user ON user.id_user=pengajuan.id_user
             LEFT JOIN retribusi ON retribusi.id_retribusi=pengajuan.id_retribusi
             LEFT JOIN wilayah ON wilayah.id_wilayah=pengajuan.id_wilayah
+            LEFT JOIN alokasi ON alokasi.id_alokasi=pengajuan.id_alokasi
             ORDER BY pengajuan.tgl_pengajuan DESC");
 
         $wilayah = $this->db->query("SELECT*FROM wilayah WHERE deleted=0");
@@ -33,10 +33,7 @@ class Pengajuan extends My_Controller {
 		 $this->Mypage('isi/adm/pengajuan',$data);
 	}
 
-
-	
-    public function perjanjian()
-    {
+    public function perjanjian(){
         $this->form_validation->set_rules('id_pengajuan', 'id_pengajuan', 'required');
         if($this->form_validation->run()==FALSE){
             $this->session->set_flashdata('error',"Data Gagal Di Tambahkan");
@@ -78,6 +75,20 @@ class Pengajuan extends My_Controller {
         }
     }
 
+    public function konfirmasiBayar($id){
+        if($id==""){
+            $this->session->set_flashdata('error',"Pembayaran Gagal di Konfirmasi");
+            redirect('adm/pengajuan');
+        }else{
+            $data=array(
+                "acc_final_admin"=> 1
+            );
+            $this->db->where('id_pengajuan', $id);
+            $this->db->update('pengajuan',$data);
+            $this->session->set_flashdata('sukses',"berhasil");
+            redirect('adm/pengajuan');
+        }
+    }
 
 	
 }

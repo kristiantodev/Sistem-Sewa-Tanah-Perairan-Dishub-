@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 13 Jul 2022 pada 14.16
+-- Waktu pembuatan: 16 Jul 2022 pada 05.37
 -- Versi server: 5.7.21-log
 -- Versi PHP: 8.0.0
 
@@ -88,17 +88,19 @@ CREATE TABLE `pengajuan` (
   `acc_dishub` int(11) NOT NULL,
   `acc_final` int(11) NOT NULL,
   `file_perjanjian` varchar(60) DEFAULT NULL,
-  `file_pembayaran` varchar(60) DEFAULT NULL
+  `file_pembayaran` varchar(60) DEFAULT NULL,
+  `acc_final_admin` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `pengajuan`
 --
 
-INSERT INTO `pengajuan` (`id_pengajuan`, `id_retribusi`, `id_wilayah`, `id_user`, `message_to_uptd`, `message_to_cust`, `acc_uptd`, `acc_admin`, `id_alokasi`, `tgl_pengajuan`, `acc_dishub`, `acc_final`, `file_perjanjian`, `file_pembayaran`) VALUES
-(1, 2, 1, '62ce63581292a', 'Saya mau pesan diwilayah palembang apakah ada ?', 'maaf. lagi tidak tersedia ya', 2, 0, 0, '2022-07-13 16:18:31', 0, 0, NULL, NULL),
-(2, 1, 1, '62ce63581292a', 'Dewa tanah Palembang', 'Oke siap mas di ACC', 1, 1, 3, '2022-07-13 16:25:36', 1, 1, '1043550426.pdf', '711123594.pdf'),
-(4, 2, 1, '62ce63581292a', '', '', 1, 0, 0, '2022-07-13 18:13:08', 0, 0, NULL, NULL);
+INSERT INTO `pengajuan` (`id_pengajuan`, `id_retribusi`, `id_wilayah`, `id_user`, `message_to_uptd`, `message_to_cust`, `acc_uptd`, `acc_admin`, `id_alokasi`, `tgl_pengajuan`, `acc_dishub`, `acc_final`, `file_perjanjian`, `file_pembayaran`, `acc_final_admin`) VALUES
+(1, 2, 1, '62ce63581292a', 'Saya mau pesan diwilayah palembang apakah ada ?', 'maaf. lagi tidak tersedia ya', 2, 0, 0, '2022-07-13 16:18:31', 0, 0, NULL, NULL, 0),
+(2, 1, 1, '62ce63581292a', 'Dewa tanah Palembang', 'Oke siap mas di ACC', 1, 1, 3, '2022-07-13 16:25:36', 1, 1, '1043550426.pdf', '711123594.pdf', 1),
+(4, 2, 1, '62ce63581292a', '', '', 1, 0, 0, '2022-07-13 18:13:08', 0, 0, NULL, NULL, 0),
+(5, 2, 2, '62d0e9fd78c07', 'aku mau perairan disekitar cirebon', NULL, 0, 0, 0, '2022-07-15 11:16:35', 0, 0, NULL, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -144,9 +146,9 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id_user`, `username`, `password`, `nm_user`, `level`, `foto`, `alamat`) VALUES
 ('62c8d9656d781', 'admin', '$2y$10$Ocfqo5rxAx2UTiJ3vKe5Qujy2n22vwwr4sdgRV3NarRYJzNd/z8Ga', 'Admin Dishub', 'Administrator', '1.jpg', NULL),
-('62ce61930ff2d', 'manda', '$2y$10$GoUXjZhBe7a/oiaW6n3/hOJ2dfsj2j0SwRRa2S0Y1xa5UiabrDCWO', 'Kristianto', 'Pelanggan', '1.jpg', ''),
 ('62ce63581292a', 'amal', '$2y$10$jLEA1KS/oM/Iflndt.Es1uoiL455Pv.sYulkmPnbJsHhjcNu7rePm', 'Ikhlasul Amal', 'Pelanggan', '1.jpg', 'Palembang'),
-('62ce64ea9ea2b', 'agung', '$2y$10$056Komn0QBWazjgAdtYas.pjKd4Rbm.0CfqUEnZUXZvD5zaHNrD2i', 'Agung Rilo Pambudi', 'UPTD', '1.jpg', NULL);
+('62ce64ea9ea2b', 'agung', '$2y$10$056Komn0QBWazjgAdtYas.pjKd4Rbm.0CfqUEnZUXZvD5zaHNrD2i', 'Agung Rilo Pambudi', 'UPTD', '1.jpg', NULL),
+('62d0e9fd78c07', 'kris', '$2y$10$BSm8fscfc0HffIHOZ.oKGOHJQONpWmt.Xka6h6GMBmLw3h7NJFIie', 'Kristianto', 'Pelanggan', '1.jpg', 'Cirebon');
 
 -- --------------------------------------------------------
 
@@ -230,7 +232,7 @@ ALTER TABLE `jenis_retribusi`
 -- AUTO_INCREMENT untuk tabel `pengajuan`
 --
 ALTER TABLE `pengajuan`
-  MODIFY `id_pengajuan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_pengajuan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `retribusi`

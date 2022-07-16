@@ -1,4 +1,15 @@
-<link href="<?php echo base_url();?>assets/style.css" rel="stylesheet" />
+<textarea id="printing-css" style="display:none;">.no-print{display:none}</textarea>
+<iframe id="printing-frame" name="print_frame" src="about:blank" style="display:none;"></iframe>
+<script type="text/javascript">
+function printDiv(elementId) {
+ var a = document.getElementById('printing-css').value;
+ var b = document.getElementById(elementId).innerHTML;
+ window.frames["print_frame"].document.title = document.title;
+ window.frames["print_frame"].document.body.innerHTML = '<style>' + a + '</style>' + b;
+ window.frames["print_frame"].window.focus();
+ window.frames["print_frame"].window.print();
+}
+</script>
             <!-- ============================================================== -->
             <!-- Start right Content here -->
             <!-- ============================================================== -->
@@ -131,6 +142,12 @@
 
                                        <a data-toggle="modal" data-target="#bb-bayar-see<?php echo $b->id_pengajuan ?>" class="btn btn-warning waves-effect waves-light"><span data-toggle="tooltip" data-original-title="Berkas Berkas Perjanjian"><font color="white"><i class="fas fa-search"></i> Bukti Pembayaran</font></span></a>
 
+                                      <?php } ?>
+
+                                      <?php if ($b->acc_final==1 && $b->acc_final_admin==1) { ?>
+<br>
+                                          <a data-toggle="modal" data-target="#bb-bayar-invoice<?php echo $b->id_pengajuan ?>" class="btn btn-info waves-effect waves-light"><span data-toggle="tooltip" data-original-title="Surat Ketetapan Retribusi Daerah"><font color="white"><i class="fas fa-search"></i> SKRD</font></span></a>
+ 
                                       <?php } ?>
 
                                     </td>
@@ -387,6 +404,102 @@
                       <button type="button" class="btn btn-secondary mr-1"  data-dismiss="modal" value="close">
                                     <i class="fas fa-times"></i>&nbsp;Keluar
                                 </button>
+                      </div>
+                    </div>
+                    </div>
+                  </div>
+
+                  <?php endforeach; ?>
+
+                  <?php $no=1;
+         foreach ($pengajuanku as $b): ?>
+                  <div class="modal fade text-left" id="bb-bayar-invoice<?=$b->id_pengajuan?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel16" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header bg-info">
+                      <h6 class="modal-title"><font color='white'>Surat Ketetapan Retribusi Daerah</font></h6>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                      </div>
+                      
+                      <div class="modal-body">
+
+                      <div id="box">
+
+                        <table border="1" width="100%">
+                          <tr>
+                            <th colspan="2"><b><center>PEMERINTAH KOTA PALEMBANG *)</center><b></th>
+                            <th><b><center>SURAT KETETAPAN RETRIBUSI DAERAH (SKRD)</center></b></th>
+                            <th></th>
+                          </tr>
+
+                          <tr>
+                            <td colspan="2">NAMA </td>
+                            <td> &nbsp;&nbsp; : &nbsp;&nbsp;<?=$b->nm_user?></td>
+                          </tr>
+
+                          <tr>
+                            <td colspan="2">ALAMAT</td>
+                            <td> &nbsp;&nbsp; : &nbsp;&nbsp;<?=$b->alamat?></td>
+                          </tr>
+
+                          <tr>
+                            <td colspan="2">NOMOR POKOK WAJIB RETRIBUSI</td>
+                            <td> &nbsp;&nbsp; :</td>
+                          </tr>
+
+                          <tr>
+                            <td colspan="2">JATUH TANGGAL TEMPO</td>
+                            <td> &nbsp;&nbsp; :</td>
+                          </tr>
+
+                          <tr>
+                            <th><b><center>NO</center><b></th>
+                            <th><b><center>KODE REKENING</center></b></th>
+                            <th><b><center>URAIAN RETRIBUSI</center></b></th>
+                            <th><b><center>JUMLAH <br>(RP)</center><b></th>
+                          </tr>
+
+                          <tr>
+                            <td colspan="2"><img src="<?php echo base_url();?>assets/images/surat.jpg" alt=""></td>
+                            <td>Keterangan :<br><?=$b->keterangan?></td>
+                            <td></td>
+                          </tr>
+
+                          <tr>
+                            <td colspan="2" rowspan="2"></td>
+                            <td> Jumlah, Ketetapan, Retribusi :<br>
+                                 Jumlah Sanksi 
+                                 <p align="right"> a. Bunga &nbsp; &nbsp;<br> b. Kenaikan</p>
+                          </td>
+                            <td></td>
+                          </tr>
+
+                          <tr>
+                            <td>Jumlah Keseluruhan : </td>
+                            <td><center><b><?="Rp " . number_format($b->harga,0,',','.');?></b></center></td>
+                          </tr>
+
+                          <tr>
+                            <td colspan="4"><b><u>PERHATIAN </u>:</b><br>
+                            1. Harap Penyetoran dilakukan pada Bank atau Bendahara Penerimaan .............................................................<br><br>
+                           </td>
+                           </tr>
+
+                        </table>
+                      </div>
+
+                      </div>
+                      <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary mr-1"  data-dismiss="modal" value="close">
+                                    <i class="fas fa-times"></i>&nbsp;Keluar
+                                </button>
+
+                                <a href="javascript:printDiv('box');">
+                                            <button type="button" class="btn btn-primary waves-effect waves-light">
+                                    <i class="fa fa-print"></i> &nbsp;Cetak&nbsp;&nbsp;</button>
+                                </a>
                       </div>
                     </div>
                     </div>
