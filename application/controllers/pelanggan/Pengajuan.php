@@ -16,13 +16,15 @@ class Pengajuan extends My_Controller {
 	public function index()
 	{
         $idUser=$this->session->userdata('id_user');
-        $pengajuan = $this->db->query("SELECT*FROM pengajuan 
-             LEFT JOIN user ON user.id_user=pengajuan.id_user
-            LEFT JOIN retribusi ON retribusi.id_retribusi=pengajuan.id_retribusi
-            LEFT JOIN wilayah ON wilayah.id_wilayah=pengajuan.id_wilayah
-            LEFT JOIN alokasi ON alokasi.id_alokasi=pengajuan.id_alokasi
-            WHERE pengajuan.id_user='$idUser'
-            ORDER BY pengajuan.tgl_pengajuan DESC");
+        $pengajuan = $this->db->query("SELECT pengajuan.*, pengajuan.id_wilayah as idWilayah, 
+        pengajuan.id_retribusi as idRetribusi, user.*, retribusi.*, wilayah.*, alokasi.* 
+        FROM pengajuan 
+        LEFT JOIN user ON user.id_user=pengajuan.id_user 
+        LEFT JOIN retribusi ON retribusi.id_retribusi=pengajuan.id_retribusi 
+        LEFT JOIN wilayah ON wilayah.id_wilayah=pengajuan.id_wilayah 
+        LEFT JOIN alokasi ON alokasi.id_alokasi=pengajuan.id_alokasi 
+        WHERE pengajuan.id_user='$idUser' 
+        ORDER BY pengajuan.tgl_pengajuan DESC");
 
         $wilayah = $this->db->query("SELECT*FROM wilayah WHERE deleted=0");
         $retribusi = $this->db->query("SELECT*FROM retribusi WHERE deleted=0");

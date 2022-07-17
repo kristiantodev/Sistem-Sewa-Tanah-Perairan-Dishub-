@@ -67,7 +67,8 @@ function printDiv(elementId) {
          foreach ($pengajuanku as $b): ?>
                                 
                                 <tr>
-                                    <td width="7" align="center"><?php echo $no++; ?></td>
+                                
+                                    <td width="7" align="center"><?php echo $no++; ?> </td>
                                     <td><?php echo $b->nm_retribusi ?><br><?php echo $b->nm_wilayah ?> </td>
                                     <td><?php echo $b->tgl_pengajuan ?></td>
                                     <td>To UPTD :<br><?php echo $b->message_to_uptd ?>
@@ -230,6 +231,7 @@ function printDiv(elementId) {
 
 
 <?php foreach ($pengajuanku as $b): ?>
+
                                   <!-- Modal -->
                   <div class="modal fade text-left" id="bb<?=$b->id_pengajuan?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel16" aria-hidden="true">
                     <div class="modal-dialog modal-lg" role="document">
@@ -243,13 +245,16 @@ function printDiv(elementId) {
                       <form action="<?php echo site_url('pelanggan/pengajuan/pilih'); ?>" method="post" enctype="multipart/form-data">
                       <div class="modal-body">
                          <?php
-                             $idWilayah = $b->id_wilayah;
-                             $idRetribusi = $b->id_retribusi;
+                             $idWilayah = $b->idWilayah;
+                             $idRetribusi = $b->idRetribusi;
                              $listAlokasi = $this->db->query("SELECT*FROM alokasi 
                               LEFT JOIN retribusi ON retribusi.id_retribusi=alokasi.id_retribusi
             LEFT JOIN wilayah ON wilayah.id_wilayah=alokasi.id_wilayah
             WHERE alokasi.id_wilayah='$idWilayah' AND alokasi.id_retribusi='$idRetribusi' AND alokasi.id_user IS NULL AND alokasi.deleted=0")->result();
+                       
                          ?>
+
+                         
                         
                               <table class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                                 <thead bgcolor="">
