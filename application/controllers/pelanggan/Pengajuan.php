@@ -51,6 +51,7 @@ class Pengajuan extends My_Controller {
                 "id_retribusi"=>$_POST['id_retribusi'],
                 "id_wilayah"=>$_POST['id_wilayah'],
                 "message_to_uptd"=>$_POST['message_to_uptd'],
+                "lama"=>$_POST['lama'],
                 "id_user"=>$this->session->userdata('id_user'),
                 "tgl_pengajuan"=>date('Y-m-d H:i:s')
             );

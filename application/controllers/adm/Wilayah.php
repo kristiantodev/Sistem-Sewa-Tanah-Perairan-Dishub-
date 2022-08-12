@@ -35,6 +35,7 @@ class Wilayah extends My_Controller {
         }else{
             $data=array(
                 "nm_wilayah"=>$_POST['nm_wilayah'],
+                "luas"=>$_POST['luas'],
                 "deleted" => 0
             );
             $this->db->insert('wilayah',$data);
@@ -51,7 +52,8 @@ class Wilayah extends My_Controller {
             redirect('adm/wilayah');
         }else{
             $data=array(
-                "nm_wilayah"=>$_POST['nm_wilayah']
+                "nm_wilayah"=>$_POST['nm_wilayah'],
+                "luas"=>$_POST['luas'],
             );
             $this->db->where('id_wilayah', $_POST['id_wilayah'] );
             $this->db->update('wilayah',$data);

@@ -13,7 +13,7 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="page-title-box">
-                                    <h3 class="page-title"><b><i class="fas fa-dolly"></i>&nbsp; Data Wilayah</b></h3>
+                                    <h3 class="page-title"><b><i class="fas fa-dolly"></i>&nbsp; Data Lokasi</b></h3>
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item active">Dinas Perhubungan Kota Palembang</li>
                                     </ol>
@@ -42,7 +42,8 @@
                                                 <thead>
                                                 <tr>
                                     <th width="9"><b>No</b></th>
-                                    <th><b>Wilayah</b></th>
+                                    <th><b>Lokasi</b></th>
+                                    <th><b>Luas</b></th>
                                     <th width="150"><b>Aksi</b></th>
                                 </tr>
                                                 </thead>
@@ -55,6 +56,7 @@
                                 <tr>
                                     <td width="7" align="center"><?php echo $no++; ?></td>
                                     <td><?php echo $wilayah->nm_wilayah ?></td>
+                                    <td><?php echo $wilayah->luas ?></td>
                                     <td>
 
                  <a data-toggle="modal" data-target="#modal-edit<?php echo $wilayah->id_wilayah ?>" class="btn btn-primary waves-effect waves-light"><span data-toggle="tooltip" data-original-title="Ubah"><font color="white"><i class="fas fa-pencil-alt"></i></font></span></a>
@@ -92,7 +94,7 @@
                     <div class="modal-dialog" role="document">
                     <div class="modal-content">
                       <div class="modal-header bg-primary">
-                      <h6 class="modal-title"><font color='white'>Form Tambah Wilayah</font></h6>
+                      <h6 class="modal-title"><font color='white'>Form Tambah Lokasi</font></h6>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
@@ -100,8 +102,14 @@
                       <form action="<?php echo site_url('adm/wilayah/add'); ?>" method="post">
                       <div class="modal-body">
                         <fieldset class="form-group floating-label-form-group">
-                          <label for="email">Nama Wilayah</label>
+                          <label for="email">Nama Lokasi</label>
                           <input type="text" name="nm_wilayah" class="form-control  round <?php echo form_error('nm_wilayah') ? 'is-invalid':'' ?>" id="email" required oninvalid="this.setCustomValidity('Harap Diisi...')" oninput="setCustomValidity('')">
+                       <font color="red"><?php echo form_error('nm_wilayah') ?></font>
+                        </fieldset>
+
+                        <fieldset class="form-group floating-label-form-group">
+                          <label for="email">Luas</label>
+                          <input type="text" name="luas" class="form-control  round <?php echo form_error('nm_wilayah') ? 'is-invalid':'' ?>" id="email" required oninvalid="this.setCustomValidity('Harap Diisi...')" oninput="setCustomValidity('')">
                        <font color="red"><?php echo form_error('nm_wilayah') ?></font>
                         </fieldset>
                          
@@ -129,7 +137,7 @@
                     <div class="modal-dialog" role="document">
                     <div class="modal-content">
                       <div class="modal-header bg-primary">
-                      <h6 class="modal-title"><font color='white'>Edit Data Wilayah</font></h6>
+                      <h6 class="modal-title"><font color='white'>Edit Data Lokasi</font></h6>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
@@ -138,8 +146,14 @@
                       <input type="hidden" readonly value="<?=$wilayah->id_wilayah;?>" name="id_wilayah" class="form-control" >
                       <div class="modal-body">
                         <fieldset class="form-group floating-label-form-group">
-                          <label for="email">Nama Wilayah</label>
+                          <label for="email">Nama Lokasi</label>
                           <input type="text" value="<?php echo $wilayah->nm_wilayah ?>" required name="nm_wilayah" class="form-control  round <?php echo form_error('nm_wilayah') ? 'is-invalid':'' ?>" id="email">
+                       <font color="red"><?php echo form_error('nm_wilayah') ?></font>
+                        </fieldset>
+
+                        <fieldset class="form-group floating-label-form-group">
+                          <label for="email">Luas</label>
+                          <input type="text" value="<?php echo $wilayah->luas ?>" required name="luas" class="form-control  round <?php echo form_error('nm_wilayah') ? 'is-invalid':'' ?>" id="email">
                        <font color="red"><?php echo form_error('nm_wilayah') ?></font>
                         </fieldset>
                                      

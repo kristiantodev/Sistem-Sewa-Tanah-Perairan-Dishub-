@@ -54,6 +54,7 @@ function printDiv(elementId) {
                                                 <tr>
                                     <th width="9"><b>No</b></th>
                                     <th><b>Pengajuan</b></th>
+                                    <th><b>Lama Sewa</b></th>
                                     <th><b>Tanggal</b></th>
                                      <th><b>Pesan</b></th>
                                     <th width="250"><b>Status</b></th>
@@ -70,6 +71,7 @@ function printDiv(elementId) {
                                 
                                     <td width="7" align="center"><?php echo $no++; ?> </td>
                                     <td><?php echo $b->nm_retribusi ?><br><?php echo $b->nm_wilayah ?> </td>
+                                    <td align="center"><?php echo $b->lama ?> Tahun</td>
                                     <td><?php echo $b->tgl_pengajuan ?></td>
                                     <td>To UPTD :<br><?php echo $b->message_to_uptd ?>
                                     <br><br>
@@ -190,15 +192,8 @@ function printDiv(elementId) {
                       </div>
                       <form action="<?php echo site_url('pelanggan/pengajuan/add'); ?>" method="post" enctype="multipart/form-data">
                       <div class="modal-body">
-                        <fieldset class="form-group floating-label-form-group">
-                          <label for="email">Retribusi</label>
-                          <select name="id_retribusi" id="select" required class="custom-select">
-                            <option value="">-- Pilih Retribusi --</option>
-                  <?php foreach ($retribusiku as $k): ?>
-                  <option value="<?php echo $k->id_retribusi ?>"><?php echo $k->nm_retribusi ?></option>
-                  <?php endforeach; ?>
-                </select>
-                        </fieldset>
+
+                      </fieldset>
                         <fieldset class="form-group floating-label-form-group">
                           <label for="email">Wilayah</label>
                           <select name="id_wilayah" id="select" required class="custom-select">
@@ -209,6 +204,23 @@ function printDiv(elementId) {
                 </select>
                         </fieldset>
 
+                        <fieldset class="form-group floating-label-form-group">
+                          <label for="email">Retribusi</label>
+                          <select name="id_retribusi" id="select" required class="custom-select">
+                            <option value="">-- Pilih Retribusi --</option>
+                  <?php foreach ($retribusiku as $k): ?>
+                  <option value="<?php echo $k->id_retribusi ?>"><?php echo $k->nm_retribusi ?></option>
+                  <?php endforeach; ?>
+                </select>
+
+                <br><br>
+
+                <fieldset class="form-group floating-label-form-group">
+                          <label for="email">Lama Sewa (Tahun)</label>
+                          <input type="number" name="lama" class="form-control  round <?php echo form_error('nm_wilayah') ? 'is-invalid':'' ?>" id="email" required oninvalid="this.setCustomValidity('Harap Diisi...')" oninput="setCustomValidity('')">
+                       <font color="red"><?php echo form_error('nm_wilayah') ?></font>
+                        </fieldset>
+                        
                             <fieldset class="form-group floating-label-form-group">
                           <label for="email">Pesan ke UPTD</label>
                           <textarea class="form-control" name="message_to_uptd" id="title1" rows="3"></textarea>

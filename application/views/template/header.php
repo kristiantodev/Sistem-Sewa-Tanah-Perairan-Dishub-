@@ -121,7 +121,7 @@
                                 <ul class="submenu">
                                     <li><a href="<?php echo site_url();?>adm/jenis_retribusi"><i class="fas fa-angle-double-right"></i> &nbsp;Jenis Retribusi</a></li>
                                     <li><a href="<?php echo site_url();?>adm/retribusi"><i class="fas fa-angle-double-right"></i> &nbsp;Retribusi</a></li>
-                                    <li><a href="<?php echo site_url();?>adm/wilayah"><i class="fas fa-angle-double-right"></i> &nbsp;Wilayah</a></li>
+                                    <li><a href="<?php echo site_url();?>adm/wilayah"><i class="fas fa-angle-double-right"></i> &nbsp;Lokasi</a></li>
                                     <li><a href="<?php echo site_url();?>adm/alokasi"><i class="fas fa-angle-double-right"></i> &nbsp;Alokasi Retribusi</a></li>
                                 </ul>
                             </li>
